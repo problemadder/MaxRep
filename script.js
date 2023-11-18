@@ -1,11 +1,20 @@
 let counting = false;
 let counter = 0;
 let isDown = true;
-const speechSynthesis = window.speechSynthesis;
+let currentInterval = 2500; // Default interval
+
 
 document.getElementById("startButton").addEventListener('click', startCounting);
-document.getElementById("stopButton").addEventListener('click', stopCounting);
-document.getElementById("speedSlider").addEventListener('input', updateSpeedDisplay);
+document.getElementById("resetButton").addEventListener('click', resetCounter);
+const intervalButtons = document.querySelectorAll('.intervalButton');
+
+intervalButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        currentInterval = this.dataset.interval;
+        console.log(`Interval set to: ${currentInterval / 1000} seconds`);
+    });
+});
+
 
 function startCounting() {
     if (!counting) {
@@ -23,18 +32,11 @@ function countdown(seconds) {
         setTimeout(function() { countdown(seconds - 1); }, 1000);
     } else {
         setTimeout(function() {
-            document.body.style.backgroundColor = "purple"; // Change back to purple
+            document.body.style.backgroundColor = "rgba(246, 241, 209)"; // Change back to rgba(246, 241, 209)
             updateCounter();
         }, 1000); // Wait for 1 second at 0 before starting regular counting
     }
 }
-
-document.querySelectorAll('.speedButton').forEach(button => {
-    button.addEventListener('click', function() {
-        setSpeed(this.getAttribute('data-speed'));
-        highlightButton(this);
-    });
-});
 
 function stopCounting() {
     if (counting) {
@@ -53,13 +55,6 @@ function stopCounting() {
 
 
 
-function highlightButton(selectedButton) {
-    document.querySelectorAll('.speedButton').forEach(button => {
-        button.classList.remove('selected');
-    });
-    selectedButton.classList.add('selected');
-}
-
 function speakPhrase() {
     if (isDown) {
         document.getElementById("downSound").play();
@@ -76,25 +71,12 @@ function speakPhrase() {
 
 function updateCounter() {
     if (counting) {
-        document.body.style.backgroundColor = "purple"; // Change back to purple
+        document.body.style.backgroundColor = "rgba(246, 241, 209)";
         speakPhrase();
-        let timeInterval = (11 - document.getElementById("speedSlider").value) * 500;
-        setTimeout(updateCounter, timeInterval);
+        setTimeout(updateCounter, currentInterval);
     }
-
 }
 
-function setSpeed(speed) {
-    // Your existing logic to set the speed
-    // For example, updating a global variable or directly adjusting the timer interval
-function updateSpeedDisplay() {
-    let sliderValue = document.getElementById("speedSlider").value;
-    // Convert the slider value to the corresponding time interval
-    let interval = (10 - sliderValue) * 0.5;
-    document.getElementById("speedDisplay").textContent = `Interval: ${interval} seconds`;
-    console.log(`Speed adjusted to: ${interval} seconds`);
-}
-}
 
 
 document.getElementById("resetButton").addEventListener('click', resetCounter);
@@ -103,10 +85,8 @@ function resetCounter() {
     counting = false;
     counter = 0;
     document.getElementById("counter").textContent = counter;
-    document.body.style.backgroundColor = "purple"; // Change back to purple
+    document.body.style.backgroundColor = "rgba(246, 241, 209)"; // Change back to rgba(246, 241, 209)
     console.log("Counter reset");
 }
-
-
 
 console.log("Script loaded. Ready to start.");
