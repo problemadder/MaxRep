@@ -1,7 +1,7 @@
 let counting = false;
 let counter = 0;
 let isDown = true;
-let currentInterval = 2000; // Default interval
+let currentInterval = 1600; // Default interval
 
 
 document.getElementById("startButton").addEventListener('click', startCounting);
