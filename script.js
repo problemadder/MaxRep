@@ -84,6 +84,9 @@ function updateCounter() {
 
 }
 
+function setSpeed(speed) {
+    // Your existing logic to set the speed
+    // For example, updating a global variable or directly adjusting the timer interval
 function updateSpeedDisplay() {
     let sliderValue = document.getElementById("speedSlider").value;
     // Convert the slider value to the corresponding time interval
@@ -91,6 +94,8 @@ function updateSpeedDisplay() {
     document.getElementById("speedDisplay").textContent = `Interval: ${interval} seconds`;
     console.log(`Speed adjusted to: ${interval} seconds`);
 }
+}
+
 
 document.getElementById("resetButton").addEventListener('click', resetCounter);
 
