@@ -29,11 +29,12 @@ function countdown(seconds) {
     }
 }
 
-// function stopCounting() {
-//     counting = false;
-//     document.body.style.backgroundColor = "purple"; // Change back to purple
-//     console.log("Timer stopped");
-// }
+document.querySelectorAll('.speedButton').forEach(button => {
+    button.addEventListener('click', function() {
+        setSpeed(this.getAttribute('data-speed'));
+        highlightButton(this);
+    });
+});
 
 function stopCounting() {
     if (counting) {
