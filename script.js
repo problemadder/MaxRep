@@ -53,19 +53,12 @@ function stopCounting() {
 
 
 
-// function speakPhrase() {
-//     let phrase = isDown ? "down" : "up";
-//     let utterance = new SpeechSynthesisUtterance(phrase);
-//     speechSynthesis.speak(utterance);
-//     console.log(`Speaking: ${phrase}`);
-
-//     if (!isDown) {
-//         counter++;
-//         document.getElementById("counter").textContent = counter;
-//     }
-//     isDown = !isDown;
-// }
-
+function highlightButton(selectedButton) {
+    document.querySelectorAll('.speedButton').forEach(button => {
+        button.classList.remove('selected');
+    });
+    selectedButton.classList.add('selected');
+}
 
 function speakPhrase() {
     if (isDown) {
