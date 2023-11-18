@@ -35,3 +35,15 @@ input[type=range] {
     max-width: 100%; /* To ensure it fits within the container */
     margin: auto; /* Centers the image horizontally */
 }
+.speedButton {
+    border-radius: 50%; /* Makes the buttons round */
+    width: 40px; /* Set the width */
+    height: 40px; /* Set the height */
+    margin: 5px;
+    cursor: pointer;
+}
+
+.speedButton.selected {
+    background-color: #4CAF50; /* Highlight color for selected button */
+    color: white;
+}
